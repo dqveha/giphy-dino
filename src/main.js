@@ -49,17 +49,35 @@ $(document).ready(function () {
       const result = JSON.parse(response);
       dinoWord += result[0][0];
       console.log(dinoWord);
-      
-      let promise2 = GiphyService.getSearchGiphy(dinoWord);
-      promise2.then(function(response) {
-        const body = JSON.parse(response);
-        $('#randomDinoGIF').html(`<img src="${body.data[0].images.original.url}">`);
-      }, function(error) {
-        $('#randomDinoGIF').text(`Sorry, it's not working.`);
-      });
-
-    }, function(error) {
-      console.log("Sorry, it's not working.");
+      return GiphyService.getSearchGiphy("cat");
+    }).then(function(response2) {
+      console.log(response2);
+      const body = JSON.parse(response2);
+      console.log(body);
+      $('#randomDinoGIF').html(`<img src="${body.data[0].images.original.url}">`);
     });
   });
 });
+
+  // The beginner way of what's accomplished above
+  // $('#randomDinoSearch').click(function () {
+  //   let promise1 = DinoIpsum.getRandomDinosaur();
+  //   let dinoWord = "";
+  
+  //   promise1.then(function(response) {
+  //     const result = JSON.parse(response);
+  //     dinoWord += result[0][0];
+  //     console.log(dinoWord);
+      
+  //     let promise2 = GiphyService.getSearchGiphy(dinoWord);
+  //     promise2.then(function(response) {
+  //       const body = JSON.parse(response);
+  //       $('#randomDinoGIF').html(`<img src="${body.data[0].images.original.url}">`);
+  //     }, function(error) {
+  //       $('#randomDinoGIF').text(`Sorry, it's not working.`);
+  //     });
+
+  //   }, function(error) {
+  //     console.log("Sorry, it's not working.");
+  //   });
+  // });
