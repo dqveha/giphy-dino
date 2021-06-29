@@ -42,10 +42,10 @@ $(document).ready(function () {
   });
 
   $('#randomDinoSearch').click(function () {
-    let promise1 = DinoIpsum.getRandomDinosaur();
+    let promise = DinoIpsum.getRandomDinosaur();
     let dinoWord = "";
   
-    promise1.then(function(response) {
+    promise.then(function(response) {
       const result = JSON.parse(response);
       dinoWord += result[0][0];
       console.log(dinoWord);
@@ -55,6 +55,8 @@ $(document).ready(function () {
       const body = JSON.parse(response2);
       console.log(body);
       $('#randomDinoGIF').html(`<img src="${body.data[0].images.original.url}">`);
+    }).catch(function (error) {
+      $('#randomDinoGIF').text(`Sorry, it's not working.`);
     });
   });
 });
